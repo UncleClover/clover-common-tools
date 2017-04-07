@@ -1,5 +1,3 @@
-# clover
-test repository
-This is a test repositoty.
-
-I am learing using Github.
+#2017-04-07 11:01
+环境属性：JDK1.6.0_45；
+用途：日常零碎代码提交，主要是自己平时开发的零碎小工具；
