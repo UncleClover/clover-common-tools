@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="GB2312"?>
+
+<!-- 数据库初始化配置 -->
+<dbs>
+	<db>
+		<driverName>oracle.jdbc.driver.OracleDriver</driverName>
+		<url>jdbc:oracle:thin:@127.0.0.1:1521:XE</url>
+		<user>clover_zhang</user>
+		<password>clover_zhang</password>
+		<dafault-table>t_db</dafault-table>
+	</db>
+</dbs>
