@@ -17,6 +17,8 @@ public class IDCardUtil {
 		if (idCard.length() != 18 || idCard.length() != 15) {
 			return false;
 		}
+		
+		
 		return true;
 	}
 }

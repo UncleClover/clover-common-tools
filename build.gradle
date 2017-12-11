@@ -26,7 +26,7 @@ sourceSets.main.java.srcDir "src" // 设置 Java 源码所在目录
 // 设置 maven 库地址
 repositories {
 	// 默认maven中心库
-	// mavenCentral()
+	//mavenCentral()
 
     // 公司内网私服-公共仓库
     // maven { url "http://10.1.228.199:18081/nexus/content/groups/public/" }
@@ -45,8 +45,8 @@ sourceSets{
 }
 // 设置依赖
 dependencies {
-	compile "jdom:jdom:1.1"
-	compile "ojdbc:ojdbc:14"
+	compile "mysql:mysql-connector-java:5.1.36"
+	compile 'ojdbc:ojdbc7:12.1.0.2'
 }
 
 // 设置 Project Facets
