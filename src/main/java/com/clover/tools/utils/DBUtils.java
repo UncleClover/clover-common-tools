@@ -1,4 +1,5 @@
-package com.clover.utils;
+package com.clover.tools.utils;
+
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,10 +10,10 @@ public class DBUtils {
 
 	public static Connection connect(String driver,String dburl,String dbuser,String pwd) {
 		try {
-			// ¼ÓÔØOracleÇý¶¯Àà
+			// ï¿½ï¿½ï¿½ï¿½Oracleï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			Class.forName(driver);
 			
-			// »ñÈ¡Êý¾Ý¿âÁ¬½Ó
+			// ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½
 			connect = DriverManager.getConnection(dburl, dbuser, pwd);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

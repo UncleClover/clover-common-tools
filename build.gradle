@@ -1,8 +1,23 @@
 import org.gradle.plugins.ide.eclipse.model.Facet
 
-apply plugin: "java"
-apply plugin: "war"
-apply plugin: "eclipse-wtp"
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'maven-publish'
+
+ext{
+	builtBy = "gradle 3.0"
+	moduleVersion = "1.0-SNAPSHOT"
+	baseVersion = "1.0-SNAPSHOT"
+	publishMavenURL = "http://127.0.0.1:8082/nexus/content/repositories/snapshots/"
+	mavenPublicUrl = "http://127.0.0.1:8082/nexus/content/groups/public/"
+	publishUserName = "admin"
+    publishUserPassword = "123456"
+    apiDir = "src/main/java/com/clover/"
+    groupId = "com.clover.tools"
+}
+
+group = "com.clover.tools"
 
 sourceCompatibility = 1.7 // 设置 JDK 版本
 webAppDirName = "WebRoot" // 设置 WebApp 根目录
@@ -11,7 +26,7 @@ sourceSets.main.java.srcDir "src" // 设置 Java 源码所在目录
 // 设置 maven 库地址
 repositories {
 	// 默认maven中心库
-	mavenCentral()
+	// mavenCentral()
 
     // 公司内网私服-公共仓库
     // maven { url "http://10.1.228.199:18081/nexus/content/groups/public/" }
@@ -44,6 +59,92 @@ eclipse {
             facet name: "jst.web", version: "3.0"
             facet name: "jst.java", version: "1.7"
             facet name: "wst.jsdt.web", version: "1.0"
+        }
+    }
+}
+
+def List<Map<String,String>> apiList = new ArrayList<Map<String,String>>();
+Set<File> fileSet = fileTree(apiDir) { include '**/*.ini' }.getFiles();
+for(File file:fileSet){
+    File f1 = new File(file.getParent());
+    String apiName =  f1.getName();
+    String version = file.getText('UTF-8');
+
+    Map<String,String> apiMap = new HashMap<String,String>();
+    apiMap.put("apiName", apiName);
+    apiMap.put("apiArtifactId", apiName);
+    apiMap.put("apiTaskName", "A"+apiName);
+    apiMap.put("apiVersion", version);
+    apiList.add(apiMap);
+}
+
+def Map<String,Object> apiDocTaskMap = new HashMap<String,Object>();
+def Map<String,Object> apiTaskMap = new HashMap<String,Object>();
+for(Map<String,String> apiMap:apiList){
+    String apiName = apiMap.get("apiName");
+    String apiVersion = apiMap.get("apiVersion");
+    String apiArtifactId = apiMap.get("apiArtifactId");
+    String apiTaskName = apiMap.get("apiTaskName");
+    def jarTask = task("${apiTaskName}Jar", type: Jar){
+        version apiVersion
+        baseName apiArtifactId
+        from sourceSets.main.output
+        destinationDir file("$buildDir/api-libs")
+        include 'com/clover/tools/'+apiName+'/**'
+        manifest {
+            attributes 'artifactId': apiArtifactId, 'Built-By': builtBy,'Built-date': new Date().format('yyyy-MM-dd HH:mm:ss'),'Manifest-Version':apiVersion
+        }
+    }
+    apiTaskMap.put(apiName, jarTask);
+}
+
+tasks.withType(JavaCompile) {
+ options.encoding = "UTF-8"
+}
+
+task api2doc{
+	dependsOn {
+	   tasks.findAll { task -> task.name.endsWith('APIDoc') }
+	}
+}
+
+publishing {
+    publications {
+        for(Map<String,String> apiMap:apiList){
+            String apiName = apiMap.get("apiName");
+            String apiVersion = apiMap.get("apiVersion");
+            String apiArtifactId = apiMap.get("apiArtifactId");
+            publishing.publications.create(apiName, MavenPublication) {
+                groupId group
+                artifactId apiArtifactId
+                version apiVersion
+                artifact  apiTaskMap.get(apiName)
+                pom.withXml {
+                    asNode().children().last() + {
+                        delegate.dependencies {
+                            delegate.dependency {
+                                delegate.groupId("com.clover.tools")
+                                delegate.artifactId("gradle")
+                                delegate.version(baseVersion)
+                            }
+                            delegate.dependency {
+                                delegate.groupId("org.jboss.resteasy")
+                                delegate.artifactId("resteasy-jaxrs")
+                                delegate.version("3.0.11.Final")
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url  publishMavenURL
+            credentials {
+                username = publishUserName
+                password = publishUserPassword
+            }
         }
     }
 }

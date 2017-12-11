@@ -1,4 +1,4 @@
-package com.clover.common;
+package com.clover.tools.common;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,14 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import com.clover.utils.DBUtils;
+import com.clover.tools.utils.DBUtils;
 
 public class InitTable {
 	private List<String> tbList = new ArrayList<String>();
 
 	public InitTable(String index, List<Map<String, String>> dbList) {
-		if (index.equals("ÇëÑ¡ÔñÊý¾Ý¿â~~~")) {
+		if (index.equals("ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½~~~")) {
 			return;
 		}
 		index = index.substring(0, 1);

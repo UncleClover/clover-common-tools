@@ -1,4 +1,4 @@
-package com.clover.utils;
+package com.clover.tools.utils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,7 +23,7 @@ public class DomUtils {
 		InputStream file = ClassLoader.getSystemResourceAsStream("db.xml");
 		try {
 			Document document = builder.build(file);
-			Element root = document.getRootElement();// »ñµÃ¸ù½Úµã
+			Element root = document.getRootElement();// ï¿½ï¿½Ã¸ï¿½ï¿½Úµï¿½
 			List<Element> list = root.getChildren("db");
 			for (Iterator<Element> it = list.iterator(); it.hasNext();) {
 				Element element = it.next();

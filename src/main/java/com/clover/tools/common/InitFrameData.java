@@ -1,4 +1,4 @@
-package com.clover.common;
+package com.clover.tools.common;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,8 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.clover.utils.DBUtils;
-import com.clover.utils.DomUtils;
+import com.clover.tools.utils.DBUtils;
+import com.clover.tools.utils.DomUtils;
 
 public class InitFrameData {
 	private List<Map<String, String>> dbList = new ArrayList<Map<String, String>>();

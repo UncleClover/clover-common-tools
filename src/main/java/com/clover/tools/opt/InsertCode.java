@@ -1,4 +1,4 @@
-package com.clover.opt;
+package com.clover.tools.opt;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -16,7 +16,7 @@ public class InsertCode {
 		try {
 			File dirFile = new File(fileurl);
 			if (!dirFile.exists()) {
-				return "1001"; // Ä¿Â¼²»´æÔÚ
+				return "1001"; // Ä¿Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			}
 			funcNo = "Function" + funcNo;
 			String fileName = fileurl + File.separator + funcNo + ".java";
@@ -76,7 +76,7 @@ public class InsertCode {
 			body.append("\t\tString " + column + "= this.getStrParameter(\"" + column + "\");\n");
 			if (flag) {
 				body.append("\t\tif(StringHelper.isBlank(" + column + ")){\n");
-				body.append("\t\t\tthrow new InvokeException(getErrorNo(0), \"" + column + "²»ÄÜÎª¿Õ\");\n");
+				body.append("\t\t\tthrow new InvokeException(getErrorNo(0), \"" + column + "ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½\");\n");
 				body.append("\t\t}\n");
 				body.append("\t\tdataMap.put(\"" + column + "\"," + column + ");\n\n");
 			} else {

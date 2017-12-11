@@ -1,4 +1,4 @@
-package com.clover.frame.main;
+package com.clover.tools.frame.main;
 
 import java.awt.EventQueue;
 
@@ -36,10 +36,10 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-import com.clover.common.InitColumn;
-import com.clover.common.InitFrameData;
-import com.clover.common.InitTable;
-import com.clover.opt.InsertCode;
+import com.clover.tools.common.InitColumn;
+import com.clover.tools.common.InitFrameData;
+import com.clover.tools.common.InitTable;
+import com.clover.tools.opt.InsertCode;
 
 import javax.swing.ListSelectionModel;
 
@@ -91,28 +91,28 @@ public class MainFrame {
 	private void initialize() throws Exception {
 		frame = new JFrame();
 
-		// ³õÊ¼»¯frame»ù±¾ÊôÐÔ
-		frame.setTitle("Clover - ×Ô¶¯¹¤¾ß(Thinkive)");
+		// ï¿½ï¿½Ê¼ï¿½ï¿½frameï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		frame.setTitle("Clover - ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½(Thinkive)");
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 900, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setLocation((size.width - 900) / 2, (size.height - 600) / 2);
 
-		// ×ó²àÌí¼Ópanel£¬ÓÃÓÚÏÔÊ¾Êý¾Ý¿âºÍµ±Ç°Ñ¡ÔñÊý¾Ý¿âÏÂµÄËùÓÐÊý¾Ý¿â±í
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½panelï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ý¿ï¿½Íµï¿½Ç°Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½
 		JPanel dbPanel = new JPanel();
 		dbPanel.setBorder(new LineBorder(Color.WHITE, 5));
 		dbPanel.setBackground(Color.WHITE);
 		frame.getContentPane().add(dbPanel, BorderLayout.WEST);
 		dbPanel.setLayout(new BorderLayout(0, 0));
 
-		// ³õÊ¼»¯JComboBox£¬ÏÔÊ¾ËùÓÐµÄÊý¾Ý¿â
+		// ï¿½ï¿½Ê¼ï¿½ï¿½JComboBoxï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½Ý¿ï¿½
 		InitFrameData init = new InitFrameData();
 		final List<Map<String, String>> dbList = init.getDbList();
 		String[] dbs = new String[dbList.size() + 1];
-		dbs[0] = "ÇëÑ¡ÔñÊý¾Ý¿â~~~";
+		dbs[0] = "ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½~~~";
 		for (int i = 0; i < dbList.size(); i++) {
-			dbs[i + 1] = (i + 1) + ":" + dbList.get(i).get("user").toUpperCase() + "£¨" + dbList.get(i).get("desc") + "£©";
+			dbs[i + 1] = (i + 1) + ":" + dbList.get(i).get("user").toUpperCase() + "ï¿½ï¿½" + dbList.get(i).get("desc") + "ï¿½ï¿½";
 		}
 		final JComboBox dbBox = new JComboBox(dbs);
 		dbBox.setEditable(true);
@@ -126,7 +126,7 @@ public class MainFrame {
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(list);
 
-		// JComboBoxÌí¼Ó¼àÌýÊÂ¼þ
+		// JComboBoxï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
 		dbBox.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
@@ -158,7 +158,7 @@ public class MainFrame {
 			}
 		});
 
-		// ÏÔÊ¾Êý¾Ý¿â±íµÄÁÐÃû-Ãæ°å
+		// ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½
 		JPanel colPanel = new JPanel();
 		frame.getContentPane().add(colPanel, BorderLayout.CENTER);
 		colPanel.setLayout(new BorderLayout(0, 0));
@@ -173,7 +173,7 @@ public class MainFrame {
 		table.setBackground(SystemColor.control);
 		table.setCellSelectionEnabled(false);
 		table.setColumnSelectionAllowed(false);
-		// ×¢²áÊý¾Ý¿â±íÑ¡ÔñÊÂ¼þ
+		// ×¢ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½Â¼ï¿½
 		list.addMouseListener(new MouseListener() {
 			public void mouseReleased(MouseEvent e) {
 			}
@@ -203,7 +203,7 @@ public class MainFrame {
 					cols[i][3] = colList.get(i).get("length");
 					cols[i][4] = colList.get(i).get("nullable");
 				}
-				table.setModel(new DefaultTableModel(cols, new String[] { "²Ù×÷", "ÁÐÃû", "ÀàÐÍ", "³¤¶È", "ÄÜ·ñÎª¿Õ" }) {
+				table.setModel(new DefaultTableModel(cols, new String[] { "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½", "ï¿½Ü·ï¿½Îªï¿½ï¿½" }) {
 					@SuppressWarnings("rawtypes")
 					Class[] columnTypes = new Class[] { Boolean.class, Object.class, Object.class, Object.class, Object.class };
 
@@ -214,49 +214,49 @@ public class MainFrame {
 				});
 				DefaultTableCellRenderer render = new DefaultTableCellRenderer();
 				render.setHorizontalAlignment(SwingConstants.CENTER);
-				table.getColumn("ÄÜ·ñÎª¿Õ").setCellRenderer(render);
+				table.getColumn("ï¿½Ü·ï¿½Îªï¿½ï¿½").setCellRenderer(render);
 				colScrollPanel.setViewportView(table);
 			}
 		});
 
-		// ÊäÈëÃæ°å
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(SystemColor.textInactiveText));
 		colPanel.add(panel, BorderLayout.SOUTH);
 
-		// ¹¦ÄÜºÅ
-		JLabel funcNoLabel = new JLabel("¹¦ÄÜºÅ£º");
+		// ï¿½ï¿½ï¿½Üºï¿½
+		JLabel funcNoLabel = new JLabel("ï¿½ï¿½ï¿½ÜºÅ£ï¿½");
 		funcNoTxt = new JTextField();
 		funcNoTxt.setText("10002");
 		funcNoTxt.setColumns(8);
 		panel.add(funcNoLabel);
 		panel.add(funcNoTxt);
 
-		// ½Ó¿ÚÃû×Ö
-		JLabel interLabel = new JLabel("½Ó¿Ú£º");
+		// ï¿½Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½
+		JLabel interLabel = new JLabel("ï¿½Ó¿Ú£ï¿½");
 		interTxt = new JTextField();
 		interTxt.setText("InterService");
 		interTxt.setColumns(8);
 		panel.add(interLabel);
 		panel.add(interTxt);
 
-		// Éú³É´úÂëµÄÄ¿Â¼
-		JLabel fileUrlLabel = new JLabel("´úÂëÄ¿Â¼£º");
+		// ï¿½ï¿½ï¿½É´ï¿½ï¿½ï¿½ï¿½Ä¿Â¼
+		JLabel fileUrlLabel = new JLabel("ï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½ï¿½");
 		fileUrlTxt = new JTextField();
 		fileUrlTxt.setText("E:\\setting\\code\\");
 		fileUrlTxt.setColumns(20);
 		panel.add(fileUrlLabel);
 		panel.add(fileUrlTxt);
 
-		// ²Ù×÷°´Å¥
-		JButton addBtn = new JButton("Éú³É²åÈë´úÂë");
-		JButton queryBtn = new JButton("Éú³É²éÑ¯´úÂë");
-		JButton delBtn = new JButton("Éú³ÉÉ¾³ý´úÂë");
-		JButton updateBtn = new JButton("Éú³É¸üÐÂ´úÂë");
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¥
+		JButton addBtn = new JButton("ï¿½ï¿½ï¿½É²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		JButton queryBtn = new JButton("ï¿½ï¿½ï¿½É²ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½");
+		JButton delBtn = new JButton("ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+		JButton updateBtn = new JButton("ï¿½ï¿½ï¿½É¸ï¿½ï¿½Â´ï¿½ï¿½ï¿½");
 		JButton checkAllBtn = new JButton("È«Ñ¡");
-		JButton uncheckAllBtn = new JButton("·´Ñ¡");
+		JButton uncheckAllBtn = new JButton("ï¿½ï¿½Ñ¡");
 
-		// Ìí¼Óµ½²Ù×÷Ãæ°å
+		// ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		JPanel optPanel = new JPanel();
 		optPanel.setBackground(new Color(224, 255, 255));
 		optPanel.setBorder(new LineBorder(Color.GRAY));
@@ -269,7 +269,7 @@ public class MainFrame {
 		optPanel.add(uncheckAllBtn);
 		frame.getContentPane().add(optPanel, BorderLayout.SOUTH);
 
-		// ²åÈë°´Å¥×¢²áÊÂ¼þ
+		// ï¿½ï¿½ï¿½ë°´Å¥×¢ï¿½ï¿½ï¿½Â¼ï¿½
 		addBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int row = table.getRowCount();
@@ -278,17 +278,17 @@ public class MainFrame {
 				}
 				String funcNo = funcNoTxt.getText();
 				if (funcNo == null || funcNo.equals("")) {
-					JOptionPane.showMessageDialog(frame, "¹¦ÄÜºÅ²»ÄÜÎª¿Õ£¡", "ÌáÊ¾", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(frame, "ï¿½ï¿½ï¿½ÜºÅ²ï¿½ï¿½ï¿½Îªï¿½Õ£ï¿½", "ï¿½ï¿½Ê¾", JOptionPane.WARNING_MESSAGE);
 					return;
 				}
 				String inter = interTxt.getText();
 				if (inter == null || inter.equals("")) {
-					JOptionPane.showMessageDialog(frame, "½Ó¿ÚÀàÃû×Ö²»ÄÜÎª¿Õ£¡", "ÌáÊ¾", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(frame, "ï¿½Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö²ï¿½ï¿½ï¿½Îªï¿½Õ£ï¿½", "ï¿½ï¿½Ê¾", JOptionPane.WARNING_MESSAGE);
 					return;
 				}
 				String fileUrl = fileUrlTxt.getText();
 				if (fileUrl == null || fileUrl.equals("")) {
-					JOptionPane.showMessageDialog(frame, "ÎÄ¼þÄ¿Â¼²»ÄÜÎª¿Õ£¡", "ÌáÊ¾", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(frame, "ï¿½Ä¼ï¿½Ä¿Â¼ï¿½ï¿½ï¿½ï¿½Îªï¿½Õ£ï¿½", "ï¿½ï¿½Ê¾", JOptionPane.WARNING_MESSAGE);
 					return;
 				}
 				DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -304,12 +304,12 @@ public class MainFrame {
 					map.put("column", model.getValueAt(i, 1));
 					tList.add(map);
 				}
-				//Éú³É´úÂë
+				//ï¿½ï¿½ï¿½É´ï¿½ï¿½ï¿½
 				InsertCode.create(tList);
 			}
 		});
 
-		// È«Ñ¡×¢²áÊÂ¼þ
+		// È«Ñ¡×¢ï¿½ï¿½ï¿½Â¼ï¿½
 		checkAllBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -323,7 +323,7 @@ public class MainFrame {
 				}
 			}
 		});
-		// ·´Ñ¡×¢²áÊÂ¼þ
+		// ï¿½ï¿½Ñ¡×¢ï¿½ï¿½ï¿½Â¼ï¿½
 		uncheckAllBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
