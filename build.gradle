@@ -1,0 +1,49 @@
+import org.gradle.plugins.ide.eclipse.model.Facet
+
+apply plugin: "java"
+apply plugin: "war"
+apply plugin: "eclipse-wtp"
+
+sourceCompatibility = 1.7 // 设置 JDK 版本
+webAppDirName = "WebRoot" // 设置 WebApp 根目录
+sourceSets.main.java.srcDir "src" // 设置 Java 源码所在目录
+
+// 设置 maven 库地址
+repositories {
+	// 默认maven中心库
+	mavenCentral()
+
+    // 公司内网私服-公共仓库
+    // maven { url "http://10.1.228.199:18081/nexus/content/groups/public/" }
+    
+    // 个人私服
+    maven { url "http://127.0.0.1:8082/nexus/content/groups/public/"} 
+}
+
+sourceSets{
+	main{
+		java { srcDirs = ['src/main/java'] }
+        resources {
+            srcDirs = ['src/main/resources']
+        }
+	}
+}
+// 设置依赖
+dependencies {
+	compile "jdom:jdom:1.1"
+	compile "ojdbc:ojdbc:14"
+}
+
+// 设置 Project Facets
+eclipse {
+    wtp {
+        facet {
+            facet name: "jst.web", type: Facet.FacetType.fixed
+            facet name: "wst.jsdt.web", type: Facet.FacetType.fixed
+            facet name: "jst.java", type: Facet.FacetType.fixed
+            facet name: "jst.web", version: "3.0"
+            facet name: "jst.java", version: "1.7"
+            facet name: "wst.jsdt.web", version: "1.0"
+        }
+    }
+}
