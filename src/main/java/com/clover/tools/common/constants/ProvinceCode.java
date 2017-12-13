@@ -13,7 +13,7 @@ public enum ProvinceCode {
 	fj("35", "福建"), jx("36", "江西"), sd("37", "山东"), ha("41", "河南"), hb("42", "湖北"), hn("43", "湖南"), 
 	gd("44", "广东"), gx("45", "广西"), hi("46", "海南"), cq("50", "重庆"), sc("51", "四川"), gz("52", "贵州"), 
 	yn("53", "云南"), xz("54", "西藏"), sn("61", "陕西"), gs("62", "甘肃"), qh("63", "青海"), nx("64", "宁夏"), 
-	xj("65", "新疆");
+	xj("65", "新疆"), nonentity("", "");
 
 	private String name;
 	private String code;
@@ -53,7 +53,7 @@ public enum ProvinceCode {
 				return provinceCode;
 			}
 		}
-		return null;
+		return ProvinceCode.nonentity;
 	}
 
 	/**
@@ -71,6 +71,6 @@ public enum ProvinceCode {
 				return provinceCode;
 			}
 		}
-		return null;
+		return ProvinceCode.nonentity;
 	}
 }
