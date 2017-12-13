@@ -1,5 +1,7 @@
 package com.clover.tools.common.constants;
 
+import java.util.Random;
+
 /**
  * 全国各省份名称和对应编码枚举类
  * 
@@ -72,5 +74,29 @@ public enum ProvinceCode {
 			}
 		}
 		return ProvinceCode.nonentity;
+	}
+	
+	/**
+	 * 获取枚举长度
+	 * 
+	 * @author zhangdq
+	 * @time 2017年12月13日 下午2:22:31
+	 * @Email qiang900714@126.com
+	 * @return
+	 */
+	public static int length() {
+		return ProvinceCode.values().length - 1;
+	}
+	
+	/**
+	 * 随机获取其中一个省份枚举信息
+	 * 
+	 * @author zhangdq
+	 * @time 2017年12月13日 下午2:25:02
+	 * @Email qiang900714@126.com
+	 * @return
+	 */
+	public static ProvinceCode random(){
+		return ProvinceCode.values()[new Random(System.currentTimeMillis()).nextInt(length())];
 	}
 }

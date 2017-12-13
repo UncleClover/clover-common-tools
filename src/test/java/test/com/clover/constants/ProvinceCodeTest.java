@@ -27,4 +27,14 @@ public class ProvinceCodeTest {
 	public void testGetCodeByName() {
 		assertNotNull(ProvinceCode.getCodeByName("河南"));
 	}
+	
+	@Test
+	public void testLength() {
+		System.out.println(ProvinceCode.length());
+	}
+
+	@Test
+	public void testRandom() {
+		System.out.println(ProvinceCode.random());
+	}
 }
