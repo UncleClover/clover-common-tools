@@ -1,6 +1,8 @@
 package com.clover.tools.common.utils;
 
+import java.util.Random;
 import com.clover.tools.common.constants.ProvinceCode;
+import com.clover.tools.common.constants.ToolsConstant;
 
 /**
  * 身份证工具类
@@ -36,7 +38,7 @@ public class IDCardUtil {
 		if (StringUtil.isEmpty(provinceCode.getName())) {
 			return false;
 		}
-		
+
 		/**
 		 * 第3、4位数字表示：所在城市的代码 第5、6位数字表示：所在区县的代码
 		 * 3-6位数字代表的地市区县已经发生过多次变更，已无法实现严格意义的校验
@@ -67,7 +69,7 @@ public class IDCardUtil {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * 随机获取一个身份证
 	 * 
@@ -76,8 +78,53 @@ public class IDCardUtil {
 	 * @Email qiang900714@126.com
 	 * @return
 	 */
-	public static String random(){
-		return "";
+	public static String random() {
+		StringBuffer sb = new StringBuffer();
+		sb.append(ProvinceCode.random().getCode());
+		sb.append(String.valueOf(new Random().nextInt(9000) + 1000));
+		sb.append(DateUtil.random(ToolsConstant.DateParam.DEFAULT_YEAR, ToolsConstant.DateParam.PRE_DATE));
+		sb.append(String.valueOf(new Random().nextInt(900) + 100));
+		sb.append(calculateVerifyCode(sb.toString()));
+		return sb.toString();
+	}
+	/**
+	 * 根据地址码、生辰随机生成一个身份证
+	 * 
+	 * @author zhangdq
+	 * @time 2017年12月14日 下午9:55:54
+	 * @Email qiang900714@126.com
+	 * @param addressCode
+	 * @param birthday
+	 * @return
+	 */
+	public static String random(String addressCode, String birthday) {
+		return random(addressCode, birthday, null); 
+	}
+
+	/**
+	 * 根据地址码、生辰和性别随机生成一个身份证
+	 * 
+	 * @author zhangdq
+	 * @time 2017年12月14日 下午9:28:50
+	 * @Email qiang900714@126.com
+	 * @param addressCode
+	 * @return
+	 */
+	public static String random(String addressCode, String birthday, String sex) {
+		if (StringUtil.isEmpty(addressCode) || addressCode.length() != 6) {
+			addressCode = ProvinceCode.random().getCode() + (new Random().nextInt(9000) + 1000);
+		}
+		if (StringUtil.isEmpty(birthday) || birthday.length() != 6) {
+			birthday = DateUtil.random(ToolsConstant.DateParam.DEFAULT_YEAR, ToolsConstant.DateParam.PRE_DATE);
+		}
+		if(StringUtil.isEmpty(sex) || (!sex.equals(ToolsConstant.IdCardParam.MAN) && !sex.equals(ToolsConstant.IdCardParam.WOMEN))){
+			sex = String.valueOf(new Random().nextInt(900) + 100);
+		}else{
+			sex = String.valueOf(new Random().nextInt(90) + 10) + String.valueOf(new Random().nextInt(20)/2);
+		}
+		StringBuffer sb = new StringBuffer();
+		sb.append(addressCode).append(birthday).append(sex);
+		return sb.append(calculateVerifyCode(sb.toString())).toString(); 
 	}
 
 	/**
@@ -91,13 +138,13 @@ public class IDCardUtil {
 	 */
 	private static String calculateVerifyCode(String idCard) {
 		int sum = 0;
-		
+
 		// sum除以11的余数依次和以下数组字符对应
-		String[] verifyCodes = { "1", "0", "X", "9", "8", "7", "6", "5", "4", "3","2"};
-		
+		String[] verifyCodes = { "1", "0", "X", "9", "8", "7", "6", "5", "4", "3", "2" };
+
 		// 身份证前17位依次和以下数字相乘后相加
 		int[] coefficient = { 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 };
-		
+
 		char[] c = idCard.substring(0, 17).toCharArray();
 		for (int i = 0; i < c.length; i++) {
 			sum += Integer.parseInt(String.valueOf(c[i])) * coefficient[i];
