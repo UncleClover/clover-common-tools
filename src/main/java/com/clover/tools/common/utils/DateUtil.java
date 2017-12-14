@@ -3,9 +3,11 @@ package com.clover.tools.common.utils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import java.util.Random;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.clover.tools.common.constants.ToolsConstant;
 
 /**
  * 日期工具类
@@ -49,7 +51,19 @@ public class DateUtil {
 	public static Date format(String date) {
 		return format(date, null);
 	}
-	
+
+	public static String format(Date date) {
+		return format(date, null);
+	}
+
+	public static String format(Date date, String format) {
+		if (StringUtil.isEmpty(format)) {
+			format = "yyyyMMdd";
+		}
+		SimpleDateFormat sdf = new SimpleDateFormat(format);
+		return sdf.format(date);
+	}
+
 	/**
 	 * 格式日期-日期格式默认yyyyMMdd
 	 * 
@@ -74,7 +88,55 @@ public class DateUtil {
 		return d;
 	}
 
+	/**
+	 * 随机获取一个日期，默认是当前时间前后100年
+	 * 
+	 * @author zhangdq
+	 * @time 2017年12月14日 下午5:23:54
+	 * @Email qiang900714@126.com
+	 * @return
+	 */
+	public static String random() {
+		return random(ToolsConstant.DateParam.DEFAULT_YEAR, null);
+	}
+
+	/**
+	 * 随机获取指定时间内的上下范围日期
+	 * 
+	 * @author zhangdq
+	 * @time 2017年12月14日 下午5:23:54
+	 * @Email qiang900714@126.com
+	 * @return
+	 */
+	public static String random(int year) {
+		return random(year, null);
+	}
+
+	/**
+	 * 随机获取指定时间范围内当前日期或前或后的一个日期
+	 * @author zhangdq
+	 * @time 2017年12月14日 下午6:38:32
+	 * @Email qiang900714@126.com
+	 * @param year
+	 * @param type
+	 * @return
+	 */
+	public static String random(int year, String type) {
+		if (StringUtil.isEmpty(type)) {
+			Random rd = new Random();
+			type = String.valueOf(rd.nextInt(2));
+		}
+		int date = Integer.parseInt(format(new Date(System.currentTimeMillis())));
+		if (type.equals(ToolsConstant.DateParam.POS_DATE)) {
+			date = date + new Random().nextInt(year * ToolsConstant.DateParam.YMD);
+		} else {
+			date = date - new Random().nextInt(year * ToolsConstant.DateParam.YMD);
+		}
+		return format(format(String.valueOf(date)));
+	}
+
 	public static void main(String[] args) {
-		System.out.println(isDate("2017q11111", "yyyyMMdd"));
+		for (int i = 0; i < 100; i++)
+			System.out.println(random());
 	}
 }
