@@ -43,6 +43,11 @@ public class StringUtil {
 		return !hasBlank(str);
 	}
 	
+	
+	public static boolean isNumberic(String str){
+		return str.matches("^[0-9]*$");
+	}
+	
 	public static void main(String[] args) {
 		System.out.println(StringUtil.hasNoBlank(" a  "));
 	}
