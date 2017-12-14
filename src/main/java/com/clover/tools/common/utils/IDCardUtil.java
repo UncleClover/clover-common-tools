@@ -36,6 +36,7 @@ public class IDCardUtil {
 		if (StringUtil.isEmpty(provinceCode.getName())) {
 			return false;
 		}
+		
 		/**
 		 * 第3、4位数字表示：所在城市的代码 第5、6位数字表示：所在区县的代码
 		 * 3-6位数字代表的地市区县已经发生过多次变更，已无法实现严格意义的校验
@@ -65,6 +66,18 @@ public class IDCardUtil {
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * 随机获取一个身份证
+	 * 
+	 * @author zhangdq
+	 * @time 2017年12月14日 下午5:13:29
+	 * @Email qiang900714@126.com
+	 * @return
+	 */
+	public static String random(){
+		return "";
 	}
 
 	/**
