@@ -4,9 +4,9 @@
 <dbs>
 	<db>
 		<driverName>oracle.jdbc.driver.OracleDriver</driverName>
-		<url>jdbc:oracle:thin:@127.0.0.1:1521:XE</url>
-		<user>clover_zhang</user>
-		<password>clover_zhang</password>
+		<url>jdbc:oracle:thin:@127.0.0.1:1521:orcl</url>
+		<user>clover</user>
+		<password>clover1990</password>
 		<dafault-table>t_db</dafault-table>
 	</db>
 </dbs>
