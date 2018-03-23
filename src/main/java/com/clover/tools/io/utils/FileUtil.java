@@ -59,18 +59,21 @@ public class FileUtil {
 	}
 
 	public static void main(String[] args) throws Exception {
-		int length = 3500;
 		RandomAccessFile raf = new RandomAccessFile("F:\\doc\\name\\name1.txt", "rw");
-		FileChannel fc = raf.getChannel();
-		int br = 0;
-		for (int i = 0; i < raf.length(); i += length + 2) {
-			MappedByteBuffer mbuff = fc.map(FileChannel.MapMode.READ_ONLY, i, length);
-			System.out.println(Charset.defaultCharset().decode(mbuff).toString());
-			br++;
-			if (br == 10) {
-				break;
-			}
+
+		while (raf.getFilePointer() < 100) {
+			raf.seek(raf.getFilePointer());
+			names(new String(raf.readLine().getBytes("ISO-8859-1"), "UTF-8"));
+			break;
 		}
+		
 		raf.close();
+	}
+	
+	public static void names(String names){
+		String[] nameArray = names.split(";");
+		for(String name : nameArray){
+			System.out.println(name);
+		}
 	}
 }
