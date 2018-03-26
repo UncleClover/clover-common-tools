@@ -2,7 +2,7 @@ package test.com.clover.constants;
 
 import org.junit.Test;
 
-import com.clover.tools.common.utils.IDCardUtil;
+import com.clover.api.tools.common.utils.IDCardUtil;
 
 public class IDCardUtilTest {
 

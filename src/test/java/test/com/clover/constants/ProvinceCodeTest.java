@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.clover.tools.common.constants.ProvinceCode;
+import com.clover.api.tools.common.constants.ProvinceCode;
 
 public class ProvinceCodeTest {
 

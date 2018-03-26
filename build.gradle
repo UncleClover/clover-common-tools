@@ -13,11 +13,11 @@ ext{
 	mavenPublicUrl = "http://127.0.0.1:8082/nexus/content/groups/public/"
 	publishUserName = "admin"
     publishUserPassword = "123456"
-    apiDir = "src/main/java/com/clover/tools/"
-    groupId = "com.clover.tools"
+    apiDir = "src/main/java/com/clover/api/"
+    groupId = "com.clover.api"
 }
 
-group = "com.clover.tools"
+group = "com.clover.api"
 
 sourceCompatibility = 1.7 // 设置 JDK 版本
 webAppDirName = "WebRoot" // 设置 WebApp 根目录
@@ -88,6 +88,7 @@ for(File file:fileSet){
     File f1 = new File(file.getParent());
     String apiName =  f1.getName();
     String version = file.getText('UTF-8');
+    
 
     Map<String,String> apiMap = new HashMap<String,String>();
     apiMap.put("apiName", apiName);
@@ -109,7 +110,7 @@ for(Map<String,String> apiMap:apiList){
         baseName apiArtifactId
         from sourceSets.main.output
         destinationDir file("$buildDir/api-libs")
-        include 'com/clover/tools/*/**'
+        include 'com/clover/api/*/**'
         manifest {
             attributes 'artifactId': apiArtifactId, 'Built-By': builtBy,'Built-date': new Date().format('yyyy-MM-dd HH:mm:ss'),'Manifest-Version':apiVersion
         }
@@ -142,8 +143,8 @@ publishing {
                     asNode().children().last() + {
                         delegate.dependencies {
                             delegate.dependency {
-                                delegate.groupId("com.clover.tools")
-                                delegate.artifactId("gradle")
+                                delegate.groupId("com.clover.api")
+                                delegate.artifactId("tools")
                                 delegate.version(baseVersion)
                             }
                             delegate.dependency {
