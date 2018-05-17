@@ -1,7 +1,9 @@
 package com.clover.api.tools.common.utils;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 import org.slf4j.Logger;
@@ -12,7 +14,7 @@ import com.clover.api.tools.common.constants.ToolsConstant;
 /**
  * 日期工具类
  * 
- * @author zhangdq
+ * @author UncleClover
  * @time 2017年12月14日 下午2:59:54
  * @Email qiang900714@126.com
  */
@@ -22,7 +24,7 @@ public class DateUtil {
 	/**
 	 * 校验字符串字符串是否是正确的日期格式
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年12月14日 下午3:22:57
 	 * @Email qiang900714@126.com
 	 * @param date
@@ -41,7 +43,7 @@ public class DateUtil {
 	/**
 	 * 格式日期-日期格式默认yyyyMMdd
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年12月14日 下午3:27:46
 	 * @Email qiang900714@126.com
 	 * @param date
@@ -67,7 +69,7 @@ public class DateUtil {
 	/**
 	 * 格式日期-日期格式默认yyyyMMdd
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年12月14日 下午3:27:46
 	 * @Email qiang900714@126.com
 	 * @param date
@@ -91,7 +93,7 @@ public class DateUtil {
 	/**
 	 * 随机获取一个日期，默认是当前时间前后100年
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年12月14日 下午5:23:54
 	 * @Email qiang900714@126.com
 	 * @return
@@ -103,7 +105,7 @@ public class DateUtil {
 	/**
 	 * 随机获取指定时间内的上下范围日期
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年12月14日 下午5:23:54
 	 * @Email qiang900714@126.com
 	 * @return
@@ -114,7 +116,7 @@ public class DateUtil {
 
 	/**
 	 * 随机获取指定时间范围内当前日期或前或后的一个日期
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年12月14日 下午6:38:32
 	 * @Email qiang900714@126.com
 	 * @param year
@@ -135,6 +137,84 @@ public class DateUtil {
 		return format(format(String.valueOf(date)));
 	}
 
+	/**
+     * 获取当月第一天
+     * 
+     * @author UncleClover
+     * @Email qiang900714@126.com
+     * @time 2018年5月17日 上午11:17:49
+     * @return
+     */
+	public static Timestamp getCurrnetMonthFirstDay() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.MONTH, 0);
+		calendar.set(Calendar.DAY_OF_MONTH, 1);
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.SECOND, 0);
+		return Timestamp.valueOf(format.format(calendar.getTime()));
+	}
+	
+	/**
+	 * 获取当月前一天最后时刻
+	 * 
+	 * @author UncleClover
+	 * @Email qiang900714@126.com
+	 * @time 2018年5月17日 上午11:17:59
+	 * @return
+	 */
+	public static Timestamp getCurrnetMonthLastDay() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.MONTH, 0);
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, -1);
+		return Timestamp.valueOf(format.format(calendar.getTime()));
+	}
+	
+	/**
+	 * 获取上月第一天
+	 * 
+	 * @author UncleClover
+	 * @Email qiang900714@126.com
+	 * @time 2018年5月17日 上午11:18:17
+	 * @return
+	 */
+	public static Timestamp getLastMonthFirstDay() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.MONTH, -1);
+		calendar.set(Calendar.DAY_OF_MONTH, 1);
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.SECOND, 0);
+		return Timestamp.valueOf(format.format(calendar.getTime()));
+	}
+
+	/**
+	 * 获取上月同期前一天最后时刻
+	 * 
+	 * @author UncleClover
+	 * @Email qiang900714@126.com
+	 * @time 2018年5月17日 上午11:17:34
+	 * @return
+	 */
+	public static Timestamp getLastMonthLastDay() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.MONTH, -1);
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, -1);
+		return Timestamp.valueOf(format.format(calendar.getTime()));
+	}
+	
 	public static void main(String[] args) {
 		for (int i = 0; i < 100; i++)
 			System.out.println(random());
