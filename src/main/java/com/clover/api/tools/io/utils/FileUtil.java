@@ -16,7 +16,7 @@ import java.nio.charset.Charset;
 /**
  * 文件工具类
  * 
- * @author zhangdq
+ * @author UncleClover
  * @time 2017年12月15日 下午5:51:24
  * @Email qiang900714@126.com
  */
@@ -25,7 +25,7 @@ public class FileUtil {
 	/**
 	 * 复制文件
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年12月15日 下午5:51:34
 	 * @Email qiang900714@126.com
 	 * @param args

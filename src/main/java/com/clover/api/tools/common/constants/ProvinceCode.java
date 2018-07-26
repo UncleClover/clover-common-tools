@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * 全国各省份名称和对应编码枚举类
  * 
- * @author zhangdq
+ * @author UncleClover
  * @time 2017年12月13日 上午10:47:32
  * @Email qiang900714@126.com
  */
@@ -46,7 +46,7 @@ public enum ProvinceCode {
 	/**
 	 * 根据code查询枚举信息
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年12月13日 上午11:07:23
 	 * @Email qiang900714@126.com
 	 * @param code
@@ -64,7 +64,7 @@ public enum ProvinceCode {
 	/**
 	 * 根据名字查询枚举信息
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年12月13日 上午11:07:50
 	 * @Email qiang900714@126.com
 	 * @param code
@@ -82,7 +82,7 @@ public enum ProvinceCode {
 	/**
 	 * 获取枚举长度
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年12月13日 下午2:22:31
 	 * @Email qiang900714@126.com
 	 * @return
@@ -94,7 +94,7 @@ public enum ProvinceCode {
 	/**
 	 * 随机获取其中一个省份枚举信息
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年12月13日 下午2:25:02
 	 * @Email qiang900714@126.com
 	 * @return

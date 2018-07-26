@@ -7,7 +7,7 @@ import com.clover.api.tools.common.constants.ToolsConstant;
 /**
  * 身份证工具类
  * 
- * @author zhangdq
+ * @author UncleClover
  * @time 2017年12月8日 上午11:13:04
  * @Email qiang900714@126.com
  */
@@ -73,7 +73,7 @@ public class IDCardUtil {
 	/**
 	 * 随机获取一个身份证
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年12月14日 下午5:13:29
 	 * @Email qiang900714@126.com
 	 * @return
@@ -90,7 +90,7 @@ public class IDCardUtil {
 	/**
 	 * 根据地址码、生辰随机生成一个身份证
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年12月14日 下午9:55:54
 	 * @Email qiang900714@126.com
 	 * @param addressCode
@@ -104,7 +104,7 @@ public class IDCardUtil {
 	/**
 	 * 根据地址码、生辰和性别随机生成一个身份证
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年12月14日 下午9:28:50
 	 * @Email qiang900714@126.com
 	 * @param addressCode
@@ -130,7 +130,7 @@ public class IDCardUtil {
 	/**
 	 * 计算校验码
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年12月14日 下午3:52:48
 	 * @Email qiang900714@126.com
 	 * @param idCard

@@ -3,7 +3,7 @@ package com.clover.api.tools.common.utils;
 /**
  * 字符串工具类
  * 
- * @author zhangdq
+ * @author UncleClover
  * @time 2017年12月8日 上午10:57:24
  * @Email qiang900714@126.com
  */
@@ -21,7 +21,7 @@ public class StringUtil {
 	
 	/**
 	 * 字符串是否有空格
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年12月8日 上午11:05:40
 	 * @Email qiang900714@126.com
 	 * @param str

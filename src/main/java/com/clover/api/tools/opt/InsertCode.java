@@ -55,7 +55,7 @@ public class InsertCode {
 		header.append("import com.thinkive.server.ResultVo;\n\n");
 		header.append("/**\n");
 		header.append(" *@desc \n");
-		header.append(" *@author zhangdq\n");
+		header.append(" *@author UncleClover\n");
 		header.append(" *@time " + new SimpleDateFormat("yyyy-mm-dd hh:mm:ss").format(new Date()) + "\n");
 		header.append(" *@version 1.0\n");
 		header.append(" */\n");

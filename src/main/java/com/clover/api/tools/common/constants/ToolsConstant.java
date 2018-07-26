@@ -3,7 +3,7 @@ package com.clover.api.tools.common.constants;
 /**
  * 常量类
  * 
- * @author zhangdq
+ * @author UncleClover
  * @time 2017年12月14日 下午9:36:09
  * @Email qiang900714@126.com
  */
@@ -14,7 +14,7 @@ public class ToolsConstant {
 	/**
 	 * 日期类常量
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年12月14日 下午9:36:28
 	 * @Email qiang900714@126.com
 	 */
@@ -47,7 +47,7 @@ public class ToolsConstant {
 	/**
 	 * 身份证常量
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年12月14日 下午9:38:18
 	 * @Email qiang900714@126.com
 	 */
